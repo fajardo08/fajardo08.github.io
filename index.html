@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hbd baby ko hihi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87CEEB; /* Sky Blue Background */
+            color: #003366; /* Dark Blue Text */
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            border: 2px solid #FF69B4;
+            border-image: linear-gradient(45deg, #FF69B4, #FF1493);
+            border-image-slice: 1;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: popIn 1s forwards;
+        }
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .heart {
+            color: #FF69B4;
+            font-size: 50px;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .typewriter {
+            display: inline;
+            font-family: monospace;
+            font-size: 24px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #FF69B4; /* Cursor color */
+            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #FF69B4; }
+        }
+        h1 {
+            font-size: 36px;
+            color: #FF69B4;
+            margin-bottom: 20px;
+        }
+        .countdown, .audio-container, .gif-container, .wishes-container, .theme-selector, .surprise-message-container {
+            margin: 20px 0;
+            border-radius: 15px;
+            background: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 2px solid #FF69B4;
+        }
+        .countdown {
+            padding: 15px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .audio-container {
+            padding: 10px;
+        }
+        .gif-container {
+            margin: 20px 0;
+        }
+        .gif-container img {
+            max-width: 100%;
+            border-radius: 15px;
+            border: 2px solid #FF69B4;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .popup-content {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid #FF69B4;
+            border-image: linear-gradient(45deg, #FF69B4, #FF1493);
+            border-image-slice: 1;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            animation: zoomIn 0.5s ease-out;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .popup-content img {
+            max-width: 100px;
+            border-radius: 10px;
+        }
+        .popup-content .surprise-gif {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .popup-content button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background: #FF69B4;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
+        }
+        .popup-content button:hover {
+            background: #FF1493;
+        }
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #FF69B4;
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: confetti-fall 4s linear infinite;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .pastel-pink-theme {
+            background-color: #FADCD9;
+            color: #4A2C2A;
+        }
+        .wishes-container {
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 15px;
+            border: 2px solid #FF69B4;
+        }
+        .wish {
+            margin: 10px 0;
+            padding: 10px;
+            background: #FFE4E1;
+            border-radius: 10px;
+            border: 1px solid #FF69B4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Happy 19th Birthday My Love!</h1>
+        <div class="countdown" id="countdown">Loading...</div>
+        <div class="audio-container">
+            <!-- Audio element for background music -->
+            <audio id="backgroundMusic">
+                <source src="c:\Users\Alessandra\Downloads\happy-birthday-guitar-117260.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <button onclick="playMusic()">Play Music</button>
+        </div>
+        <div class="gif-container">
+            <img src="c:\Users\Alessandra\Downloads\cake.webp" alt="Happy Birthday GIF">
+        </div>
+        <div class="wishes-container">
+            <h2>Leave Your Birthday Wishes:</h2>
+            <form id="wishesForm">
+                <textarea id="wishMessage" rows="4" cols="50" placeholder="Write your wish here..."></textarea>
+                <br>
+                <button type="submit">Submit Wish</button>
+            </form>
+            <div id="wishesList"></div>
+        </div>
+        <div class="theme-selector">
+            <button onclick="setTheme('#FFDDC1', '#BF5D5D')">I</button>
+            <button onclick="setTheme('#E0F7FA', '#00796B')">LOVE</button>
+            <button onclick="setTheme('#FADCD9', '#4A2C2A')">YOU</button>
+        </div>
+        <div class="surprise-message-container">
+            <button onclick="showSurpriseMessage()">Baby, I really want to make you feel special and show how much I appreciate you. Click this.</button>
+        </div>
+    </div>
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <img src="c:\Users\Alessandra\Downloads\giphy.webp" alt="Surprise GIF" class="surprise-gif">
+            <p>Would you mind if I sent you a gift? Your approval means a lot!</p>
+            <div class="approval-buttons">
+                <button onclick="approveGift()">Yes</button>
+                <button onclick="denyGift()">No</button>
+            </div>
+            <button onclick="closePopup()">Close</button>
+        </div>
+    </div>
+    <div class="confetti" id="confetti"></div>
+    <footer>
+        - aj <3
+    </footer>
+    <script>
+        let targetDate = new Date("2024-09-08T00:00:00"); // Default target date
+        let giftSendDate = null; // Default gift send date
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeDiff = targetDate - now;
+
+            if (timeDiff <= 0) {
+                document.getElementById("countdown").innerHTML = "It's your day baby!";
+                return;
+            }
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            document.getElementById("countdown").innerHTML = `
+                ${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds
+            `;
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+
+        // Personalized message based on time of day
+        function updateMessage() {
+            const now = new Date();
+            const hours = now.getHours();
+
+            let message = "Happy 19th Birthday My Love!";
+            document.getElementById("title").innerText = message;
+        }
+
+        // Update the message initially and set an interval to update it every minute
+        updateMessage();
+        setInterval(updateMessage, 60000); // Every minute
+
+        // Show surprise message popup
+        function showSurpriseMessage() {
+            // Simulate setting the gift date
+            giftSendDate = new Date();
+            document.getElementById("popup").style.display = 'flex';
+        }
+
+        // Handle gift approval
+        function approveGift() {
+            alert('I’m excited to send you a gift! Could you give me your address so I can send it to you? :)');
+            closePopup();
+        }
+
+        function denyGift() {
+            alert('HMP! :(');
+            closePopup();
+        }
+
+        // Close surprise message popup
+        function closePopup() {
+            document.getElementById("popup").style.display = 'none';
+        }
+
+        // Confetti animation with heart shapes
+        function createConfetti() {
+            const confetti = document.getElementById('confetti');
+            confetti.innerHTML = ''; // Clear existing confetti
+
+            for (let i = 0; i < 100; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 50%)`; // Random color
+                piece.style.left = `${Math.random() * 100}vw`;
+                piece.style.top = `${Math.random() * 100}vh`;
+                piece.style.width = `${Math.random() * 15 + 15}px`;
+                piece.style.height = piece.style.width;
+                piece.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                piece.style.opacity = Math.random() * 0.5 + 0.5;
+                confetti.appendChild(piece);
+            }
+        }
+
+        // Call createConfetti to initialize the confetti effect
+        window.onload = function() {
+            createConfetti();
+        };
+
+        // Handle wishes form submission
+        document.getElementById('wishesForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const wishMessage = document.getElementById('wishMessage').value;
+            const wishesList = document.getElementById('wishesList');
+
+            if (wishMessage.trim()) {
+                const newWish = document.createElement('div');
+                newWish.className = 'wish';
+                newWish.textContent = wishMessage;
+                wishesList.appendChild(newWish);
+
+                // Clear the form
+                document.getElementById('wishMessage').value = '';
+            }
+        });
+
+        // Set theme colors
+        function setTheme(bgColor, textColor) {
+            document.body.style.backgroundColor = bgColor;
+            document.body.style.color = textColor;
+
+            // Apply theme classes
+            document.querySelector('.container').classList.toggle('pastel-pink-theme', bgColor === '#FADCD9');
+        }
+
+        function playMusic() {
+            const audio = document.getElementById('backgroundMusic');
+            audio.play().catch(function(continous) {
+                console.log('Playback', continous);
+            });
+        }
+    </script>
+</body>
+</html>
